@@ -1,0 +1,22 @@
+.register {
+	margin: 0;
+	padding: 0 1rem;
+	display: flex;
+	justify-content: space-between;
+	background-image: url("../../images/background.jpg");
+	height: 100vh;
+}
+
+.register-form {
+	min-width: 500px;
+	max-width: 1500px;
+	margin: 3rem;
+	padding: 2rem;
+	border: 1px solid rgb(201, 201, 201);
+	border-radius: 2rem;
+	background: white;
+}
+
+.fab {
+	margin: 0 1rem;
+}

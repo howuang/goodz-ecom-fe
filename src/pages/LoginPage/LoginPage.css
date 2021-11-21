@@ -1,0 +1,22 @@
+.login {
+	height: 100vh;
+	margin: 0;
+	padding: 0 2rem;
+	display: flex;
+	justify-content: space-between;
+	background-image: url("../../images/background.jpg");
+}
+
+.login-form {
+	min-width: 500px;
+	max-width: 1500px;
+	margin: 3rem;
+	padding: 3rem;
+	border: 1px solid rgb(201, 201, 201);
+	border-radius: 2rem;
+	background: white;
+}
+
+.fab {
+	margin: 0 1rem;
+}
