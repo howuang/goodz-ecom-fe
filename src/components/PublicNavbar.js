@@ -27,9 +27,6 @@ const PublicNavbar = () => {
     }
 
     const user = useSelector(state => state.users.currentUser);
-    const currentCart = useSelector(state => state.carts.cart);
-    console.log("user", user)
-
     const handleLogOut = (e) => {
         dispatch(authAction.logout(e));
     };
@@ -37,7 +34,7 @@ const PublicNavbar = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(productAction.getAllProducts({ pageNum, limit, query }));
-        navigate("/product");
+        navigate("/products");
     }
 
     useEffect(() => {
@@ -72,7 +69,7 @@ const PublicNavbar = () => {
                         </Nav>
                         <Collapse in={open}>
                             <div>
-                                <Form className="d-flex" style={{paddingLeft: "10px", display: "flex", alignItems: "center"}}>
+                                <Form onSubmit={handleSubmit} className="d-flex" style={{paddingLeft: "10px", display: "flex", alignItems: "center"}}>
                                     <FormControl
                                         type="search"
                                         placeholder="Search"
@@ -97,7 +94,7 @@ const PublicNavbar = () => {
                             <NavDropdown.Item onClick={handleLogOut}>Log out</NavDropdown.Item>
                         </NavDropdown>
                     )}
-                    <Nav.Link as={NavLink} to="/cart">Cart({currentCart.length})</Nav.Link>
+                    <Nav.Link as={NavLink} to="/cart">Cart</Nav.Link>                   
                 </Container>
             </Navbar>
         </div>

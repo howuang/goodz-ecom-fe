@@ -21,14 +21,11 @@ const DetailPage = () => {
     const [cart, setCart] = useState([]);
     
 
-    const addToCart = (productId) => {
-        setCartProduct(productId)
-    };
-
+    
     const handleAddQty = () => {
         setQuantity(quantity + 1)
     };
-
+    
     const handleMinusQty = () => {
         setQuantity(quantity - 1)
     }
@@ -37,36 +34,40 @@ const DetailPage = () => {
         e.preventDefault();
         setReview(e.target.value);
     }
- 
+    
     const handleReviewSubmit = () => {
         dispatch(userActions.postReview({ review, productId, rating }));
     };
+
+    const addToCart = (productId) => {
+        setCartProduct(productId)
+    };
     
     const dispatch = useDispatch();
+
     const loading = useSelector(state => state.products.loading)
     const product = useSelector(state => state.products.singleProduct)
     const currentCart = useSelector(state => state.carts.cart)
     
     useEffect(() => {
-   if (currentCart.length == 0) {
+        dispatch(productAction.getDetail({productId}))
+    }, [productId])
+    
+    useEffect(() => {
+        dispatch(cartActions.getCart())
+    },[])
+    
+    useEffect(() => {
+   if (currentCart && cartProduct) {
      dispatch(cartActions.createCart(cartProduct, quantity))
    }
     }, [cartProduct, quantity])
 
     useEffect(() => {
-        if (currentCart.length >= 1) {
-            dispatch(cartActions.addToCart({cartProduct, quantity}))
+        if (currentCart && cartProduct) {
+            dispatch(cartActions.addToCart(cartProduct, quantity))
         }
     }, [cartProduct, quantity])
-
-    useEffect(() => {
-        dispatch(productAction.getDetail({productId}))
-    }, [productId])
-
-     useEffect(() => {
-        dispatch(cartActions.getCart())
-    },[])
-
 
     return (
         <div>

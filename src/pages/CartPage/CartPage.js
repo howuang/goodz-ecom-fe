@@ -9,7 +9,7 @@ import cartActions from '../../redux/actions/cart.action'
 
 const CartPage = () => {
     const [cartProductId, setCartProductId] = useState("");
-    const [currentCart, setCurrentCart] = useState([])
+    const [currentCart, setCurrentCart] = useState([]);
     const [productId, setProductId] = useState(false);
 
     const navigate = useNavigate()
@@ -19,20 +19,17 @@ const CartPage = () => {
     const handleClickProduct = (productId) => {
     navigate(`/products/${productId}`);
     };
-
-    const removeCart = (cartProductId) => {
-    dispatch(cartActions.deleteCart({cartProductId}))
+    
+    const cart = useSelector(state => state.carts.cart)
+    const cartId = useSelector(state => state.carts.cart[0]?._id)
+    const loading = useSelector(state => state.carts.loading)
+    
+    const removeCart = (product) => {
+        const qty = product.qty;
+        const productId = product.productId._id
+        dispatch(cartActions.deleteCart( cartId, {productId, qty }));
     };
 
-    const cart = useSelector(state => state.carts.cart)
-    const cartId = useSelector(state => state.carts.cart._id)
-    const loading = useSelector(state => state.carts.loading)
-
-     useEffect(() =>{
-      if (productId) {
-      dispatch(cartActions.deleteCart({cartId}));
-    }
-    },[productId]);
 
     useEffect(() => {
         dispatch(cartActions.getCart(currentCart))
@@ -46,12 +43,12 @@ const CartPage = () => {
                     <Col md={6}>
                         <h1 className="text-center">Shopping Cart</h1>
                     </Col>
-                    <Col>
+                    {/* <Col>
                         <p>Quanity</p>
                     </Col>
                     <Col>
                         <p>Total</p>
-                    </Col>
+                    </Col> */}
                 </Row>
                 <Row>
                     <Col>
@@ -80,11 +77,12 @@ const CartPage = () => {
                                                 <Card.Body>
                                                     <Card.Title>{product.productId.name}</Card.Title>
                                                     <Card.Text>$ {product.productId.price}</Card.Text>
+                                                    <Card.Text>Quanity: {product.qty}</Card.Text>
                                                     <Button
                                                         className="position-absolute btn-danger"
                                                         style={{ top: "5px", right: "5px" }}
                                                         size="sm"
-                                                        onClick={() => removeCart(product.productId._id)}
+                                                        onClick={() => removeCart(product)}
                                                     >
                                                         &times;
                                                     </Button>
