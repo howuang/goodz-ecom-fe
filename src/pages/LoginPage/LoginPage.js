@@ -64,10 +64,11 @@ const LoginPage = () => {
                   </Form.Group>
               <Button variant="primary" type="submit">Submit</Button>
           </Form> 
-          <div style={{ display: 'flex', flexDirection: 'column', marginTop: "2rem" }}>
-                  <Button variant="light" onClick={loginWithGoogle}><i className="fab fa-google" ></i>Continue with Google</Button>
-                  <br/>
-              <Button><i className="fab fa-facebook"></i>Continue with Facebook</Button>
+          <div style={{ width: "100%", display: 'flex', justifyContent: "center", marginTop: "2rem" }}>
+                 <ul style={{ listStyle: "none", display: "flex", fontSize: "2rem", justifyContent: "center" }}>
+                      <li><a href="https://ecombe-hoang.herokuapp.com/api/users/loginwithgoogle"><i className="fab fa-google"></i></a></li>
+                      <li><a href="https://ecombe-hoang.herokuapp.com/api/users/loginwithfacebook"><i className="fab fa-facebook"></i></a></li>
+                  </ul>
           </div>
           </div>
           

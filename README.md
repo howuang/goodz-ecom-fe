@@ -4,25 +4,25 @@ This project is to implement React JS and Redux to create an E-commerce website 
 
 ## Requirements:
 
-- [x] User are welcome with landing page
-- [x] User can see a list of products
-- [x] User can pagination through page
-- [ ] User can filter the products list
-- [ ] User can search for keywords
-- [x] User can click to see detail of one single product
-- [ ]User can share search result and single product detail page URL to another user
-- [x] User can use url to go to different page
-- [x] User can create account
-- [x] User can login/logout
-- [ ] User need authorization for some protected feature and layout
-- [ ] Authorize User can create product cart
-- [x] User can add product to cart
-- [ ] User can see product cart detail
-- [ ] User can request to pay for a cart
-- [x] User can create review for a product
-- [ ] User can see review of a product
-- [ ] User can rate a product
-- [ ] **Must** create at least 5 orders and 5 reviews
+- User are welcome with landing page
+- User can see a list of products
+- User can pagination through page
+- User can filter the products list
+- User can search for keywords
+- User can click to see detail of one single product
+- User can share search result and single product detail page URL to another user
+- User can use url to go to different page
+- User can create account
+- User can login/logout
+- User need authorization for some protected feature and layout
+- Authorize User can create product cart
+- User can add product to cart
+- User can see product cart detail
+- User can request to pay for a cart
+- User can create review for a product
+- User can see review of a product
+- User can rate a product
+- **Must** create at least 5 orders and 5 reviews
 
 ## File Structure
 

@@ -38,8 +38,8 @@ const RegisterPage = () => {
                   <h5>Sign up with social</h5>
               <div>
                   <ul style={{ listStyle: "none", display: "flex", fontSize: "2rem", justifyContent: "center" }}>
-                      <li><a><i className="fab fa-google"></i></a></li>
-                      <li><a><i className="fab fa-facebook"></i></a></li>
+                      <li><a href="https://ecombe-hoang.herokuapp.com/api/users/loginwithgoogle"><i className="fab fa-google"></i></a></li>
+                      <li><a href="https://ecombe-hoang.herokuapp.com/api/users/loginwithfacebook"><i className="fab fa-facebook"></i></a></li>
                   </ul>
               </div>
               </div>
