@@ -39,12 +39,7 @@ const PublicNavbar = () => {
 
     useEffect(() => {
         dispatch(userActions.getCurrentUser(currentUser))
-    }, [currentUser])
-
-    useEffect(() => {
-        dispatch(cartActions.getCart(cart))
-    },[cart])
-
+    }, [currentUser]);
     return (
         <div>
             <Navbar className="bg.transparent" expand="lg">
@@ -86,6 +81,8 @@ const PublicNavbar = () => {
                         <Nav.Link as={NavLink} to="/login">Log in</Nav.Link>                   
                     )}
                     {user._id && (
+                        <>
+                            <img style={{height: "40px", marginLeft: "20px"}} src={user.avatar}/>
                         <NavDropdown title={user.name} id="navbarScrollingDropdown">
                             <NavDropdown.Item as={NavLink} to="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item>Settings</NavDropdown.Item>
@@ -93,6 +90,7 @@ const PublicNavbar = () => {
                             <NavDropdown.Divider />
                             <NavDropdown.Item onClick={handleLogOut}>Log out</NavDropdown.Item>
                         </NavDropdown>
+                        </>
                     )}
                     <Nav.Link as={NavLink} to="/cart">Cart</Nav.Link>                   
                 </Container>

@@ -15,13 +15,19 @@ const DetailPage = () => {
     const params = useParams();
     const productId = params.id;
     const [cartProduct, setCartProduct] = useState(false);
-    const rating = 5;
     const [review, setReview] = useState("")
     const [quantity, setQuantity] = useState(1);
     const [cart, setCart] = useState([]);
-    
+    const [deleteReview, setDeleteReview] = useState("");
+    const [comment, setComment] = useState(false);
+    const [rating, setRating] = useState(1);
+    const [updateComment, setUpdateComment] = useState(false);
 
-    
+     const handleCommentText = (e) => {
+        console.log(e.target.value, 'key here')
+        setComment(e.target.value)
+    }
+
     const handleAddQty = () => {
         setQuantity(quantity + 1)
     };
@@ -39,15 +45,31 @@ const DetailPage = () => {
         dispatch(userActions.postReview({ review, productId, rating }));
     };
 
+     const handleDeleteReview = (reviewId) => {
+        setDeleteReview(reviewId)
+    }
+
     const addToCart = (productId) => {
         setCartProduct(productId)
     };
+
+       const handUpdateReview = (id) => {
+        console.log(id,'id here');
+        setUpdateComment(id)
+    }
+    const handleSuccess = (e) => {
+        if(e.keyCode === 13) {
+          setUpdateComment(false)
+          dispatch(userActions.putReview({updateComment, comment, productId}))
+        }
+    }
     
     const dispatch = useDispatch();
 
     const loading = useSelector(state => state.products.loading)
     const product = useSelector(state => state.products.singleProduct)
     const currentCart = useSelector(state => state.carts.cart)
+    const comments = useSelector(state => state.users.comment);
     
     useEffect(() => {
         dispatch(productAction.getDetail({productId}))
@@ -67,7 +89,17 @@ const DetailPage = () => {
         if (currentCart && cartProduct) {
             dispatch(cartActions.addToCart(cartProduct, quantity))
         }
-    }, [cartProduct, quantity])
+    }, [cartProduct, quantity]);
+
+     useEffect(() => {
+    if(deleteReview){
+        dispatch(userActions.deleteReview({deleteReview, productId}))
+    }
+     }, [dispatch, deleteReview]);
+    
+      useEffect(() => {
+        dispatch(userActions.getAllComment({productId, dispatch}))
+      },[productId]);   
 
     return (
         <div>
@@ -129,6 +161,22 @@ const DetailPage = () => {
                                         <br />
                                         <div>
                                             <Button style={{ backgroundColor: "white", border: "1px solid black", maxWidth: "100%", height: "2.5rem" }} onClick={handleReviewSubmit}>Send review</Button>
+                                             <ul>
+                                                {comments && comments.map((review) => {
+                                                    return <li key={review._id}>{review.content}
+                                                        <Button onClick={() => handleDeleteReview(review._id)} style={{ margin: '10px 30px' }}>
+                                                            Delete
+                                                        </Button>
+                                                        {updateComment ?
+                                                            <textarea onChange={handleCommentText} onKeyDown={handleSuccess} style={{ margin: '10px 30px' }}>
+                                                            </textarea> :
+                                                            <Button onClick={() => handUpdateReview(review._id)} style={{ margin: '10px 30px' }}>
+                                                                Update
+                                                            </Button>
+                                                        }
+                                                    </li>;
+                                                })}
+                                            </ul>
                                         </div>
                                     </> 
                                 )} 

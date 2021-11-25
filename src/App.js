@@ -10,6 +10,7 @@ import ProductsPage from './pages/ProductsPage/ProductsPage';
 import DetailPage from './pages/DetailPage/DetailPage';
 import CartPage from './pages/CartPage/CartPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import { UpdateProfile } from './pages/ProfilePage/UpdateProfile';
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
           <Route exact path="/products" element={<ProductsPage />} />
           <Route exact path="/products/:id" element={<DetailPage />} />
           <Route exact path="/cart" element={<CartPage />} />
-          <Route exact path="/profile" element={<ProfilePage/>} />
+          <Route exact path="/profile" element={<ProfilePage />} />
+          <Route exact path="/profile/update" element={<UpdateProfile />} />
         </Routes>
       </div>
     </Router>

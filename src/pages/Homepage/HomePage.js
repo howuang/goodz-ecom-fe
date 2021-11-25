@@ -31,7 +31,7 @@ const HomePage = () => {
                 <Row>
                     <Carousel variant="dark">
                         {products.map((e) => (            
-                            <Carousel.Item className="carousel-item" interval={2000} style={{height: "600px"}}>
+                            <Carousel.Item key={e._id} className="carousel-item" interval={2000} style={{height: "600px"}}>
                                 <img
                                     src={e.image}
                                     alt="First slide"

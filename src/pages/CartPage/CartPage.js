@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router'
 import PublicFooter from '../../components/PublicFooter'
 import PublicNavbar from '../../components/PublicNavbar'
 import cartActions from '../../redux/actions/cart.action'
+import userActions from '../../redux/actions/user.action'
 
 const CartPage = () => {
     const [cartProductId, setCartProductId] = useState("");
@@ -19,6 +20,13 @@ const CartPage = () => {
     const handleClickProduct = (productId) => {
     navigate(`/products/${productId}`);
     };
+
+    const handleOrder = () => {
+        if (cartId) {
+          dispatch(userActions.postOrder(cartId));
+        }
+    }
+
     
     const cart = useSelector(state => state.carts.cart)
     const cartId = useSelector(state => state.carts.cart[0]?._id)
@@ -96,7 +104,7 @@ const CartPage = () => {
                 </Row>
                 <Row className="justify-content-center">
                     <Col md={6}> 
-                        <Button style={{ marginBottom: "5rem" }}>Checkout</Button>
+                        <Button onClick={handleOrder} style={{ marginBottom: "5rem" }}>Checkout</Button>
                     </Col> 
                 </Row>
             </Container>
